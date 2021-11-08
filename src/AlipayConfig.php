@@ -7,9 +7,8 @@ use BusyPHP\App;
 /**
  * 支付宝配置
  * @author busy^life <busy.life@qq.com>
- * @copyright (c) 2015--2019 ShanXi Han Tuo Technology Co.,Ltd. All rights reserved.
- * @version $Id: 2020/10/12 下午12:55 下午 AlipayConfig.php $
- * @property App $app
+ * @copyright (c) 2015--2021 ShanXi Han Tuo Technology Co.,Ltd. All rights reserved.
+ * @version $Id: 2021/11/8 下午8:23 AlipayConfig.php $
  */
 trait AlipayConfig
 {
@@ -24,11 +23,12 @@ trait AlipayConfig
      */
     public function getConfig(string $name, $default = null)
     {
+        $app = App::getInstance();
         if (!$this->isLoad) {
-            $this->app->config->load($this->app->getRootPath() . 'config' . DIRECTORY_SEPARATOR . 'extend' . DIRECTORY_SEPARATOR . 'alipay.php', 'alipay');
+            $app->config->load($app->getRootPath() . 'config' . DIRECTORY_SEPARATOR . 'extend' . DIRECTORY_SEPARATOR . 'alipay.php', 'alipay');
             $this->isLoad = true;
         }
         
-        return $this->app->config->get('alipay.' . $name, $default);
+        return $app->config->get('alipay.' . $name, $default);
     }
 }

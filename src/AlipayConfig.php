@@ -2,8 +2,6 @@
 
 namespace BusyPHP\alipay;
 
-use BusyPHP\App;
-
 /**
  * 支付宝配置
  * @author busy^life <busy.life@qq.com>
@@ -13,7 +11,7 @@ use BusyPHP\App;
  */
 trait AlipayConfig
 {
-    private $isLoad = false;
+    use WithAlipayConfig;
     
     
     /**
@@ -25,12 +23,6 @@ trait AlipayConfig
      */
     public function getConfig(string $name, $default = null)
     {
-        $app = App::getInstance();
-        if (!$this->isLoad) {
-            $app->config->load($app->getRootPath() . 'config' . DIRECTORY_SEPARATOR . 'extend' . DIRECTORY_SEPARATOR . 'alipay.php', 'alipay');
-            $this->isLoad = true;
-        }
-        
-        return $app->config->get('alipay.' . $name, $default);
+        return $this->getAlipayConfig($name, $default);
     }
 }

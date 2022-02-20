@@ -21,7 +21,7 @@
 		"branch-alias" : {
 			"dev-master" : "2.0.x-dev"
 		},
-		"busyphp"      : {
+		"think"        : {
 			"config" : {
 				"busy-alipay" : "src/config.php"
 			}
